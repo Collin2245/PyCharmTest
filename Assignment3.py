@@ -70,5 +70,5 @@ g = Graph()
 g.read("graph.csv")
 
 
-print(timeit.Timer(g.process).timeit(number=1))
-print(timeit.Timer(g.processOptimized).timeit(number=1))
+print("MST non minheap ", timeit.Timer(g.process).timeit(number=1))
+#print(timeit.Timer(g.processOptimized).timeit(number=1))
