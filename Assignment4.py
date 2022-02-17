@@ -197,7 +197,7 @@ class Graph():
                     # update distance value in min heap also
                     minHeap.decreaseKey(v, key[v])
 
-        #printArr(parent, V)
+        printArr(parent, V)
 
     def read(self, v):  # graph.read([])
         self.csv = list(csv.reader(open(v)))
