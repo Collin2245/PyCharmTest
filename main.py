@@ -3,7 +3,8 @@
 # import Assignment3
 # import TestArray
 # import Assignment4
-import Assignment5
+# import Assignment5
+import Assignment6
 
 def main():
     print("main")
