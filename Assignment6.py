@@ -209,63 +209,82 @@ def MergeSort(array):
 s = generateTestArray(10, 0, 20)
 m = generateTestArray(1000, 0, 2000)
 l = generateTestArray(10000, 0, 20000)
+s0 = s;
+m0 = m;
+l0 = l;
 big = generateTestArray(100000, 0, 200000)
 
 
 def heapSorts():
+    s = s0;
     HeapSort(s)
 
 def heapSortm():
+    m = m0
     HeapSort(m)
 
 def heapSortl():
+    l = l0;
     HeapSort(l)
 
 def heapSortBig():
     HeapSort(big)
 
 def bubbleSorts():
+    s = s0;
     bubbleSort(s)
 
 
 def bubbleSortm():
+    m = m0
     bubbleSort(m)
 
 
 def bubbleSortl():
+    l = l0;
     bubbleSort(l)
 
 def bubbleSortl():
+    l = l0;
     bubbleSort(l)
 
 
 def selectionSorts():
+    s = s0;
     selectionSort(s)
 
 
 def selectionSortm():
+    m = m0
     selectionSort(m)
 
 
 def selectionSortl():
+    l = l0;
     selectionSort(l)
 
 def insertionSorts():
+    s = s0;
     insertionSort(s)
 
 def insertionSortm():
+    m = m0
     insertionSort(m)
 
 def insertionSortl():
+    l = l0;
     insertionSort(l)
 
 def MergeSorts():
+    s = s0;
     MergeSort(s)
 
 def MergeSortm():
+    m = m0
     MergeSort(m)
 
 def MergeSortl():
+    l = l0;
     MergeSort(l)
 
 
