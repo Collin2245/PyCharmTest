@@ -133,6 +133,7 @@ def seachTrie():
     trie = Trie()
     trie.patchInsert(texts,len(pat))
     n = trie.search(pat)
+    print(n)
 
 def searchBruteForce():
     BrutalForce(texts, pat);
