@@ -1,5 +1,5 @@
 class HashTable1:
-    M = 31
+    M = 200
 
     def __init__(self):
         self.array = [[]] * self.M
@@ -35,7 +35,7 @@ class HashTable1:
 
 
 class HashTable2:
-    M = 31
+    M = 200
     g = 5**(1/2)
 
     def __init__(self):
@@ -100,10 +100,10 @@ ht2 = HashTable2()
 
 for i in inputString:
     print(ht1.array)
-    ht1.array.insert(i,i)
+    print(ht1.array.insert(i,i))
 
 for i in inputString:
     print(ht2.array)
-    ht2.insert(i,i)
+    ht2.insert(0,i)
 
 

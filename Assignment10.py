@@ -1,10 +1,15 @@
 list = {
-    "A": 0.25,
-    "B":0.21,
-    "C":0.18,
-    "D":0.16
+    "A": .02,
+    "B": .03,
+    "C": .04,
+    "D": .06,
+    "E": .07,
+    "F": .08,
+    "G": .09,
+    "H": .11,
+    "I": .20,
+    "J": .30
 }
-
 
 class Node:
     def __init__(self, symbol, value, left=None, right=None):
@@ -18,14 +23,14 @@ class Node:
         return self.left is None and self.right is None
 
     def updateHuff(self):
-        if not self.isLeaf():
+        if not self.isLeft():
             self.left.huff = self.huff + '0'
             self.left.updateHuff()
             self.right.huff = self.huff + '1'
             self.right.updateHuff()
 
     def printHuff(self):
-        if not self.isLeaf():
+        if not self.isLeft():
             self.left.printHuff()
             self.right.printHuff()
         else:
@@ -59,7 +64,7 @@ class HuffmanTree:
 
 
 tree = HuffmanTree()
-tree.buildTree(list)
+tree.BuildTree(list)
 tree.updateHuff()
 tree.printHuff()
 
