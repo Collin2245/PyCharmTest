@@ -1,29 +1,79 @@
-import math
+import binascii
+
+def calcRedundantBits(m):
+	for i in range(m):
+		if(2**i >= m + i + 1):
+			return i
 
 
-class HammingCode:
-    def __init__(self, n):
-        self.n = n
-        self.k = 0
-        while math.pow(2, self.k) < self.n + self.k + 1:
-            self.k = self.k + 1
+def posRedundantBits(data, r):
+	j = 0
+	k = 1
+	m = len(data)
+	res = ''
+
+	for i in range(1, m + r+1):
+		if(i == 2**j):
+			res = res + '0'
+			j += 1
+		else:
+			res = res + data[-1 * k]
+			k += 1
+	return res[::-1]
 
 
-    def encode(self, input): #input is a binary array
-        bit_array = [0] * (self.n + self.k)
-        current_power = 0
-        for i in range(len(bit_array)):
-            if i != math.pow(2, current_power):
-                current_power += 1
-        bit_array[index]
+def calcParityBits(arr, r):
+	n = len(arr)
+	for i in range(r):
+		val = 0
+		for j in range(1, n + 1):
+			if(j & (2**i) == (2**i)):
+				val = val ^ int(arr[-1 * j])
+		arr = arr[:n-(2**i)] + str(val) + arr[n-(2**i)+1:]
+	return arr
 
-    def decimalToBinary(self, dec):
-        return bin(dec).replace('0b', '')
+def detectError(arr, nr):
+	n = len(arr)
+	res = 0
+	for i in range(nr):
+		val = 0
+		for j in range(1, n + 1):
+			if(j & (2**i) == (2**i)):
+				val = val ^ int(arr[-1 * j])
+		res = res + val*(10**i)
+	return int(str(res), 2)
+
+string = "Praise the Lord for His mercy and truth. O praise the Lord, all ye nations: praise him, all ye people. For his merciful kindness is great toward us: and the atruth of the Lord endureth for ever. Praise ye the Lord."
+a_bytes = bytes(string, "ascii")
+data=(' '.join(["{0:b}".format(x) for x in a_bytes]))
+data = data.replace(" ", "")
+print(data)
+
+m = len(data)
+r = calcRedundantBits(m)
+
+arr = posRedundantBits(data, r)
+
+arr = calcParityBits(arr, r)
+
+print("Data transferred is " + arr)
+arr = '1010000111001011000011101011111001111001011000001110100110100011001011000001001100110111111100101100100100000110011011011111110010100000100100011010011110011100000110110111001011110010110001111110011000001100001110111011001001000001110100111001011101011110100110100010111010000010011111000001110000111001011000011101001111001111001011000001110100110100011001011000001001100110111111100101100100101100100000110000111011001101100100000111100111001011000001101110110000111101001101001110111111011101110011111010100000111000011100101100001110100111100111100101100000110100011010011101101101100100000110000111011001101100100000111100111001011000001110000110010111011111110000110110011001011011101000001000110110111111100101000001101000110100111100111000001101101110010111100101100011110100111001101110101110110010000011010111101001110111011001001101110110010111100111110011100000110100111100111000001100111111001011001011100001111010010000011101001101111111011111000011110010110010010000011101011110011111010100000110000111011101100100100000111010011010001100101100000110000111101001110010111010111101001101000100000110111111001101000001110100110100011001011000001001100110111111100101100100100000110010111011101100100111010111100101100101111010011010001000001100110110111111100101000001100101111011011001011110010101110100000101000011100101100001110100111100111100101100000111100111001011000001110100110100011001011000001001100110111111100101100100101110'
+print("Error Data is " + arr)
+correction = detectError(arr, r)
+print("The position of error is " + str(correction))
 
 
-    def reverseList(self, arr):
-        result = []
-        for i in arr:
-            result.insert(0, 1)
-        return  result
+def BinaryToDecimal(binary):
+	# Using int function to convert to
+	# string
+	string = int(binary, 2)
 
+	return string
+
+str_data =' '
+for i in range(0, len(str(correction)), 7):
+	temp_data = str(correction)[i:i + 7]
+	decimal_data = BinaryToDecimal(temp_data)
+	str_data = str_data + chr(decimal_data)
+
+print("fixed: " + str_data)
